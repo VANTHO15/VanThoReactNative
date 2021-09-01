@@ -17,7 +17,9 @@ class Login extends Component {
         super(props);
         this.state={
           isCheck:false,
-          showEye:false
+          showEye:false,
+          userName:'',
+          password:''
         }
       }
       CheckBox  = () => 
@@ -38,10 +40,29 @@ class Login extends Component {
       showPass  = () => 
       {
         if(!this.state.showEye)
-        return (<TextInput style={css.input} placeholder="Nhập PassWord" secureTextEntry={true}/>);
-        else return (<TextInput style={css.input} placeholder="Nhập PassWord" secureTextEntry={false}/>);
+        return (<TextInput onChangeText={(event)=>this.getPass(event)} style={css.input} placeholder="Nhập PassWord" secureTextEntry={true}/>);
+        else return (<TextInput onChangeText={(event)=>this.getPass(event)} style={css.input} placeholder="Nhập PassWord" secureTextEntry={false}/>);
       }
-      
+      getUserName  = (data) => 
+        {
+            this.setState({
+                userName:data
+            })
+        }
+      getPass  = (data) => 
+        {
+            this.setState({
+                password:data
+            })
+        }
+        ClickLogin  = () => 
+        {
+            if(this.state.userName=="vantho15" && this.state.password=="vannhucu")
+            {
+                this.props.navigation.navigate('Home');
+            }
+        }
+        
     render() {
         return (
             <ScrollView 
@@ -68,7 +89,7 @@ class Login extends Component {
                         </Text>
                         {/* form input  */}
                         <View style={{marginTop:10}}>
-                            <TextInput style={[css.input,{marginBottom:15}]} placeholder="Nhập UserName"/>
+                            <TextInput onChangeText={(event)=>this.getUserName(event)} style={[css.input,{marginBottom:15}]} placeholder="Nhập UserName"/>
                             <View style={{position:'relative'}}>
                                  {this.showPass()}
                                  <TouchableOpacity onPress={()=>this.changeEye()} style={{position:'absolute', right:15, top:10}}>
@@ -89,7 +110,7 @@ class Login extends Component {
                             style={{marginTop:10}}
                         ></CheckBox>
                          {/* NÚt bâm  */}
-                         <TouchableOpacity style={{alignItems:'center', flex:1, marginTop:10}}>
+                         <TouchableOpacity onPress={()=>this.ClickLogin()} style={{alignItems:'center', flex:1, marginTop:10}}>
                              <Text style={css.login}>Login</Text>
                          </TouchableOpacity>
                          <View style={{alignItems:'center', flex:1, marginTop:5}}>

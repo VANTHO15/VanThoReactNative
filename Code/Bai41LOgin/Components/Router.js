@@ -10,7 +10,7 @@ class login extends Component {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="Login">
                     <Stack.Screen name="Login" component={Login} options={{ title: 'Login' ,headerShown: false}}/>
-                    <Stack.Screen name="Home" component={Home} options={{ title: 'Home' ,headerShown: false}}/>
+                    <Stack.Screen name="Home" component={Home} options={{ title: 'Home' ,headerShown: true}}/>
                 </Stack.Navigator>
             </NavigationContainer>
     );

@@ -1,1 +1,2 @@
 # VanThoReactNative
+# https://getemoji.com/
